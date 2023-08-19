@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.simpleService.setOnClickListener {
+            stopService(MyForegroundService.newIntent(this)) // остановка сервиса снаружи
             startService(MyService.newIntent(this, start = 10))
         }
 
