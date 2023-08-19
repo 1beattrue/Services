@@ -9,8 +9,6 @@ import edu.mirea.onebeattrue.services.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private var id = 0
-
     private val binding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
@@ -24,29 +22,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.foregroundService.setOnClickListener {
-            showNotification()
+            startForegroundService(MyForegroundService.newIntent(this))
         }
-    }
-
-    private fun showNotification() {
-        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-        val notificationChannel = NotificationChannel( // по идее тут нужно делать проверку на то, что версия >= Oreo (26, 27 SDK)
-            CHANNEL_ID,
-            CHANNEL_NAME,
-            NotificationManager.IMPORTANCE_DEFAULT
-        )
-        notificationManager.createNotificationChannel(notificationChannel)
-        val notification = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("Title")
-            .setContentText("Text")
-            .setSmallIcon(R.drawable.ic_launcher_background) // обязательно
-            .build()
-
-        notificationManager.notify(id++, notification)
-    }
-
-    companion object {
-        private const val CHANNEL_ID = "channel_id"
-        private const val CHANNEL_NAME = "channel_name"
     }
 }

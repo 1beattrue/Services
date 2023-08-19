@@ -24,7 +24,7 @@ class MyService : Service() {
         log("onStartCommand")
         val start = intent?.getIntExtra(EXTRA_START, 0) ?: 0
         coroutineScope.launch {
-            for (i in start..start + 100) {
+            for (i in start..start + 10) {
                 delay(1000)
                 log("Timer $i")
             }
