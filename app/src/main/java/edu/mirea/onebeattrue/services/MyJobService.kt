@@ -42,7 +42,11 @@ class MyJobService: JobService() {
         coroutineScope.cancel()
     }
 
-    fun log(message: String) {
+    private fun log(message: String) {
         Log.d("MyJobService", "MyJobService: $message")
+    }
+
+    companion object {
+        const val JOB_ID = 228
     }
 }
