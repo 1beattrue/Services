@@ -1,10 +1,9 @@
 package edu.mirea.onebeattrue.services
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import edu.mirea.onebeattrue.services.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +23,13 @@ class MainActivity : AppCompatActivity() {
 
         binding.foregroundService.setOnClickListener {
             startForegroundService(MyForegroundService.newIntent(this))
+        }
+
+        binding.intentService.setOnClickListener {
+            ContextCompat.startForegroundService( // еще способ запуска сервиса
+                this,
+                MyIntentService.newIntent(this)
+            )
         }
     }
 }
