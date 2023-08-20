@@ -7,6 +7,7 @@ import android.content.ComponentName
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.content.getSystemService
 import edu.mirea.onebeattrue.services.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -51,6 +52,10 @@ class MainActivity : AppCompatActivity() {
 
             val intent = MyJobService.newIntent(page++)
             jobScheduler.enqueue(jobInfo, JobWorkItem(intent)) // кладем запрос в очередь
+        }
+
+        binding.jobIntentService.setOnClickListener {
+            MyJobIntentService.enqueue(this, page++)
         }
     }
 }
